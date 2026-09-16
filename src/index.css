@@ -1,21 +1,62 @@
-@import "tailwindcss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+  
   html {
-    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased;
   }
 }
 
-@media print {
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
+@layer components {
+  .container-cv {
+    @apply max-w-4xl mx-auto px-gutter py-8;
   }
-  header, nav, footer, #hero button, .print\:hidden {
-    display: none !important;
+  
+  .section {
+    @apply mb-12;
   }
-  @page {
-    margin: 1.5cm;
-    size: A4 portrait;
+  
+  .section-title {
+    @apply text-2xl font-bold font-heading text-primary-900 dark:text-primary-50 mb-6 pb-3 border-b-2 border-primary-200 dark:border-primary-900;
+  }
+  
+  .card {
+    @apply bg-slate-50 dark:bg-slate-900 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+  
+  .button-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors duration-200;
+  }
+  
+  .button-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white rounded-lg font-medium transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.6s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
