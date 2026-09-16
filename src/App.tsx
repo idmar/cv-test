@@ -1,30 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import ActionBar from './components/ActionBar';
+import Toast from './components/Toast';
 import Experience from './components/sections/Experience';
 import Skills from './components/sections/Skills';
 import Education from './components/sections/Education';
 import Projects from './components/sections/Projects';
 import Footer from './components/Footer';
+import { exportToPDF, printCV } from './utils/export';
 
 function App() {
   const [isDark, setIsDark] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
 
-  useEffect(() => {
-    // Check system preference on mount
+  // Check system preference on mount
+  useState(() => {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setIsDark(true);
     }
-  }, []);
+  });
 
-  useEffect(() => {
+  // Handle scroll events
+  useState(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  });
 
   const toggleDarkMode = () => {
     setIsDark(!isDark);
@@ -34,10 +39,25 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleExportPDF = async () => {
+    try {
+      await exportToPDF();
+      setToast({ message: 'PDF exported successfully!', type: 'success' });
+    } catch (error) {
+      setToast({ message: 'Failed to export PDF', type: 'error' });
+    }
+  };
+
+  const handlePrint = () => {
+    printCV();
+    setToast({ message: 'Print dialog opened', type: 'info' });
+  };
+
   return (
     <div className={isDark ? 'dark' : ''}>
       <div className="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300">
         <Navigation isDark={isDark} onToggleDarkMode={toggleDarkMode} />
+        <ActionBar onExportPDF={handleExportPDF} onPrint={handlePrint} />
         <Header />
         <main className="container-cv">
           <Experience />
@@ -56,6 +76,15 @@ function App() {
           >
             ↑
           </button>
+        )}
+
+        {/* Toast Notification */}
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
         )}
       </div>
     </div>
