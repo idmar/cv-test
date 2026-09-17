@@ -17,8 +17,8 @@ const Navigation = ({ isDark, onToggleDarkMode }: NavigationProps) => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white dark:bg-slate-950 shadow-md transition-colors duration-300">
-      <div className="container-cv">
+    <nav className="sticky top-0 z-50 bg-ivory dark:bg-black shadow-md transition-colors duration-300">
+      <div className="nav-shell">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
@@ -45,7 +45,7 @@ const Navigation = ({ isDark, onToggleDarkMode }: NavigationProps) => {
             {/* Theme Toggle */}
             <button
               onClick={onToggleDarkMode}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:bg-green dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle dark mode"
             >
               {isDark ? (
@@ -58,7 +58,7 @@ const Navigation = ({ isDark, onToggleDarkMode }: NavigationProps) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+              className="md:hidden p-2 rounded-lg bg-white dark:bg-slate-900 hover:bg-green dark:hover:bg-slate-800 transition-colors"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}

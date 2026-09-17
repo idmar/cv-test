@@ -5,11 +5,12 @@ const Projects = () => {
   const { projects } = cvData;
 
   return (
-    <section id="projects" className="section fade-in">
+    <section id="projects" className="section section-dark fade-in">
       <h2 className="section-title">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="wide-grid">
         {projects.map((project, index) => (
-          <div key={index} className="card flex flex-col">
+          <div key={index} className="card col-span-12 md:col-span-6 lg:col-span-4 flex flex-col">
+            <span className="data-label mb-8 text-orange">0{index + 1} / Package</span>
             <h3 className="text-xl font-bold text-primary-900 dark:text-primary-100 mb-2">
               {project.title}
             </h3>

@@ -5,13 +5,14 @@ const Experience = () => {
   const { experience } = cvData;
 
   return (
-    <section id="experience" className="section fade-in">
+    <section id="experience" className="section section-dark fade-in">
       <h2 className="section-title">Work Experience</h2>
-      <div className="space-y-8">
+      <div className="wide-grid">
         {experience.map((job, index) => (
-          <div key={index} className="card">
-            <div className="flex items-start justify-between mb-3">
+          <div key={index} className="card col-span-12 lg:col-span-6">
+            <div className="mb-8 flex items-start justify-between gap-4">
               <div>
+                <span className="data-label mb-4 block text-orange">0{index + 1} / Role</span>
                 <h3 className="text-xl font-bold text-primary-900 dark:text-primary-100">
                   {job.position}
                 </h3>
@@ -23,7 +24,7 @@ const Experience = () => {
             </div>
 
             {/* Date Range */}
-            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm mb-4">
+            <div className="mb-6 flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
               <Calendar size={16} />
               <span>
                 {job.startDate} - {job.endDate}
@@ -31,7 +32,7 @@ const Experience = () => {
             </div>
 
             {/* Description */}
-            <ul className="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300 mb-4">
+            <ul className="mb-8 list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300">
               {job.description.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}

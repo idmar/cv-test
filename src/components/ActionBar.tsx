@@ -25,7 +25,7 @@ const ActionBar = ({ onExportPDF, onPrint }: ActionBarProps) => {
   };
 
   return (
-    <div className="fixed left-8 bottom-24 flex flex-col gap-3 z-30 md:flex hidden">
+    <div className="fixed right-8 bottom-24 flex flex-col gap-3 z-30 hidden md:flex">
       {/* Export PDF */}
       <button
         onClick={onExportPDF}

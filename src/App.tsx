@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div className={isDark ? 'dark' : ''}>
-      <div className="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 transition-colors duration-300">
+      <div className="bg-ivory dark:bg-black text-black dark:text-white transition-colors duration-300">
         <Navigation isDark={isDark} onToggleDarkMode={toggleDarkMode} />
         <ActionBar onExportPDF={handleExportPDF} onPrint={handlePrint} />
         <Header />
@@ -71,7 +71,7 @@ function App() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 p-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40"
+            className="fixed bottom-8 right-8 p-3 bg-orange hover:bg-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40"
             aria-label="Back to top"
           >
             ↑

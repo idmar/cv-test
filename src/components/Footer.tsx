@@ -1,37 +1,30 @@
-import { Heart } from 'lucide-react';
+import { ArrowUpRight, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-8 mt-16">
+    <footer className="border-t border-white/20 bg-black text-white">
       <div className="container-cv">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-slate-700 dark:text-slate-400 text-sm">
-            <p className="flex items-center gap-2">
-              Made with <Heart size={16} className="text-red-500" /> by Idmar
-            </p>
-          </div>
-          <div className="text-slate-700 dark:text-slate-400 text-sm">
-            <p>
-              © {currentYear} Idmar. All rights reserved. | Powered by React + TypeScript
-            </p>
-          </div>
-          <div className="text-slate-700 dark:text-slate-400 text-sm">
-            <a
-              href="#"
-              className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            >
-              Privacy Policy
-            </a>
-            {' | '}
-            <a
-              href="#"
-              className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            >
-              Contact
+        <div className="mb-10 flex flex-col justify-between gap-8 border-b border-white/25 pb-8 md:flex-row md:items-end">
+          <div>
+            <span className="data-label text-orange">Available for considered work</span>
+            <a href="#experience" className="mt-4 flex items-center gap-2 text-lg text-white hover:text-orange">
+              Explore the archive <ArrowUpRight size={18} />
             </a>
           </div>
+          <p className="max-w-sm text-sm leading-relaxed text-white/60">
+            A full-stack practice built around clear systems, durable interfaces, and useful outcomes.
+          </p>
+        </div>
+
+        <div className="overflow-hidden">
+          <div className="display-title whitespace-nowrap text-white">IDMAR<span className="text-orange">.</span></div>
+        </div>
+
+        <div className="mt-8 flex flex-col justify-between gap-4 text-xs text-white/50 md:flex-row">
+          <p className="flex items-center gap-2">Made with <Heart size={14} className="text-orange" /> by Idmar</p>
+          <p>© {currentYear} / React + TypeScript / Beijing</p>
         </div>
       </div>
     </footer>

@@ -6,9 +6,10 @@ const Skills = () => {
   return (
     <section id="skills" className="section fade-in">
       <h2 className="section-title">Skills</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="wide-grid">
         {skills.map((skillGroup, index) => (
-          <div key={index} className="card">
+          <div key={index} className="card col-span-12 md:col-span-6 lg:col-span-3">
+            <span className="data-label mb-8 block text-orange">0{index + 1} / Format</span>
             <h3 className="text-lg font-bold text-primary-900 dark:text-primary-100 mb-4">
               {skillGroup.category}
             </h3>

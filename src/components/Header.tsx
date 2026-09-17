@@ -1,64 +1,57 @@
-import { Mail, MapPin, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, ExternalLink, ArrowDownRight } from 'lucide-react';
 import { cvData } from '@/data/cv';
 
 const Header = () => {
   const { personal } = cvData;
 
   return (
-    <header className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-slate-900 dark:to-slate-800 py-16 border-b-2 border-primary-200 dark:border-primary-900">
-      <div className="container-cv">
+    <header className="relative overflow-hidden bg-black text-white">
+      <div className="container-cv min-h-[calc(100vh-5rem)] flex flex-col justify-between">
         <div className="fade-in">
-          {/* Name and Title */}
-          <div className="mb-4">
-            <h1 className="text-5xl font-bold font-heading text-primary-900 dark:text-primary-100 mb-2">
-              {personal.name}
-            </h1>
-            <p className="text-2xl text-primary-600 dark:text-primary-400 font-medium">
-              {personal.title}
-            </p>
+          <div className="mb-8 flex items-center justify-between border-b border-white/25 pb-4 text-xs text-green">
+            <span className="data-label">01 / Independent Digital Operator</span>
+            <span className="data-label">Beijing / UTC+8</span>
           </div>
 
-          {/* Bio */}
-          <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 max-w-2xl leading-relaxed">
-            {personal.bio}
-          </p>
-
-          {/* Contact Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-slate-700 dark:text-slate-300">
-            <a
-              href={`mailto:${personal.email}`}
-              className="flex items-center gap-3 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            >
-              <Mail size={20} />
-              <span>{personal.email}</span>
-            </a>
-            <div className="flex items-center gap-3">
-              <MapPin size={20} />
-              <span>{personal.location}</span>
+          <div className="wide-grid items-end gap-y-10">
+            <div className="col-span-12 lg:col-span-9">
+              <p className="data-label mb-5 text-orange">{personal.title}</p>
+              <h1 className="display-title text-white">{personal.name}</h1>
+              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
+                {personal.bio}
+              </p>
             </div>
-            <a
-              href={`tel:${personal.phone}`}
-              className="flex items-center gap-3 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-            >
-              <span>📱 {personal.phone}</span>
-            </a>
+            <div className="col-span-12 flex justify-start lg:col-span-3 lg:justify-end">
+              <div className="coffee-cup" aria-hidden="true" />
+            </div>
           </div>
+        </div>
 
-          {/* Social Links */}
-          <div className="flex flex-wrap gap-4">
-            {personal.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button-primary"
-              >
-                {link.label}
-                <ExternalLink size={16} />
-              </a>
-            ))}
+        <div className="mt-16 overflow-hidden border-y border-white/25 py-4 text-xs text-white/60">
+          <div className="marquee flex gap-10">
+            <span>React / TypeScript / Performance / Systems / Collaboration / </span>
+            <span>React / TypeScript / Performance / Systems / Collaboration / </span>
           </div>
+        </div>
+
+        <div className="mt-10 flex flex-col justify-between gap-8 border-t border-white/25 pt-6 text-sm text-white/70 md:flex-row md:items-end">
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            <a href={`mailto:${personal.email}`} className="flex items-center gap-2 hover:text-orange">
+              <Mail size={16} /> {personal.email}
+            </a>
+            <span className="flex items-center gap-2"><MapPin size={16} /> {personal.location}</span>
+          </div>
+          <a href="#experience" className="flex items-center gap-2 text-orange">
+            Scroll to explore <ArrowDownRight size={18} />
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {personal.links.map((link) => (
+            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className="button-primary">
+              {link.label} <ExternalLink size={14} />
+            </a>
+          ))}
         </div>
       </div>
     </header>

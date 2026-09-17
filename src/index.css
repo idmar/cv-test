@@ -3,40 +3,217 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter+Tight:wght@400;500;600&family=Unbounded:wght@400;600;700;800&display=swap');
+
+  :root {
+    --color-black: #262626;
+    --color-ivory: #f3f1e9;
+    --color-orange: #df6341;
+    --color-white: #f9f7f7;
+    --color-green: #afab8e;
+    --color-brown: #a59171;
+    --color-salmon: #de7e64;
+  }
   
   html {
     scroll-behavior: smooth;
   }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   
   body {
     @apply antialiased;
+    background-color: var(--color-ivory);
+    color: var(--color-black);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(1rem, 0.96rem + 0.16vw, 1.125rem);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    content: '';
+    inset: 0;
+    opacity: 0.07;
+    pointer-events: none;
+    position: fixed;
+    z-index: 50;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  a {
+    letter-spacing: -0.03em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Unbounded', sans-serif;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  button,
+  a,
+  .font-mono,
+  .data-label {
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
   }
 }
 
 @layer components {
   .container-cv {
-    @apply max-w-4xl mx-auto px-gutter py-8;
+    width: min(100% - clamp(2rem, 7vw, 8rem), 115.5rem);
+    margin-inline: auto;
+    padding-block: clamp(4rem, 9vw, 10rem);
+  }
+
+  .nav-shell {
+    width: min(100% - clamp(2rem, 7vw, 8rem), 115.5rem);
+    margin-inline: auto;
   }
   
   .section {
-    @apply mb-12;
+    border-bottom: 1px dashed rgb(38 38 38 / 30%);
+    margin: 0;
+    min-height: clamp(36rem, 75vh, 58rem);
+    padding-block: clamp(5rem, 12vw, 12.5rem);
+  }
+
+  .section-dark {
+    background: var(--color-black);
+    color: var(--color-white);
+    margin-inline: calc(clamp(1rem, 7vw, 8rem) * -1);
+    padding-inline: clamp(1rem, 7vw, 8rem);
+  }
+
+  .section-dark .section-title {
+    border-color: rgb(249 247 247 / 30%);
+    color: var(--color-white);
+  }
+
+  .section-dark .card {
+    background: rgb(249 247 247 / 6%);
+    border-color: rgb(249 247 247 / 25%);
+  }
+
+  .section-dark .card:hover {
+    background: rgb(249 247 247 / 10%);
+  }
+
+  .section-dark .text-black,
+  .section-dark .text-slate-700,
+  .section-dark .text-slate-600,
+  .section-dark .text-primary-900 {
+    color: var(--color-white);
+  }
+
+  .section-dark .text-primary-600,
+  .section-dark .text-primary-700 {
+    color: var(--color-salmon);
+  }
+
+  .section-dark .bg-primary-100 {
+    background: rgb(175 171 142 / 20%);
   }
   
   .section-title {
-    @apply text-2xl font-bold font-heading text-primary-900 dark:text-primary-50 mb-6 pb-3 border-b-2 border-primary-200 dark:border-primary-900;
+    color: var(--color-black);
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.35rem, 1rem + 1.6vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin-bottom: clamp(2.5rem, 6vw, 6rem);
+    padding-bottom: 1.25rem;
+    text-transform: uppercase;
   }
   
   .card {
-    @apply bg-slate-50 dark:bg-slate-900 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300;
+    @apply bg-white p-6 shadow-sm transition-shadow duration-300;
+    border: 1px dashed rgb(38 38 38 / 25%);
+    border-radius: clamp(0.75rem, 1vw, 1.375rem);
+    padding: clamp(1.25rem, 2.5vw, 2.5rem);
   }
   
   .button-primary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors duration-200;
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-orange hover:bg-primary-700 text-white font-medium transition-colors duration-200;
+    border-radius: 999px;
+    letter-spacing: 0;
   }
   
   .button-secondary {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white rounded-lg font-medium transition-colors duration-200;
+    @apply inline-flex items-center gap-2 px-4 py-2 bg-green hover:bg-brown text-black font-medium transition-colors duration-200;
+    border-radius: 999px;
+    letter-spacing: 0;
+  }
+
+  .display-title {
+    font-size: clamp(4.5rem, 17vw, 14.375rem);
+    font-weight: 800;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+  }
+
+  .wide-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 2.5rem);
+  }
+
+  .dashed-rule {
+    border-top: 1px dashed currentColor;
+    opacity: 0.35;
+  }
+
+  .marquee {
+    animation: marquee 24s linear infinite;
+    min-width: max-content;
+  }
+
+  .coffee-cup {
+    animation: floatCup 5s ease-in-out infinite;
+    background: var(--color-orange);
+    border-radius: 0 0 2rem 2rem;
+    height: clamp(8rem, 18vw, 16rem);
+    position: relative;
+    transform: rotate(-7deg);
+    width: clamp(9rem, 20vw, 18rem);
+  }
+
+  .coffee-cup::before {
+    background: var(--color-black);
+    border: 0.5rem solid var(--color-white);
+    border-radius: 50%;
+    content: '';
+    height: 28%;
+    left: 8%;
+    position: absolute;
+    top: -8%;
+    width: 84%;
+  }
+
+  .coffee-cup::after {
+    border: clamp(0.7rem, 1.5vw, 1.25rem) solid var(--color-orange);
+    border-left-color: transparent;
+    border-radius: 50%;
+    content: '';
+    height: 45%;
+    position: absolute;
+    right: -28%;
+    top: 22%;
+    width: 40%;
   }
 }
 
@@ -47,6 +224,24 @@
   
   .fade-in {
     animation: fadeIn 0.6s ease-in;
+  }
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes floatCup {
+    0%, 100% { transform: translateY(0) rotate(-7deg); }
+    50% { transform: translateY(-1rem) rotate(-3deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
   
   @keyframes fadeIn {
